@@ -32,6 +32,7 @@ Bash and standard Unix tools only; no package dependencies. When adding or chang
 - Keep diffs focused. Record lasting trade-offs in `docs/decisions/` (copy `template.md`, next free number).
 - Name commits `type: short imperative summary`, using lowercase `feat`, `fix`, `docs`, `refactor`, `test` or `chore`.
 - Update `CHANGELOG.md` for every user-visible change.
+- **Releases are annotated tags only:** `git tag -a vX.Y.Z -m "vX.Y.Z: <theme>"` on a `main` commit whose CI passed, then `git push origin vX.Y.Z`. The version must match the `CHANGELOG.md` heading (rename the `Unreleased` heading to `vX.Y.Z — YYYY-MM-DD` in the release commit). Do not create GitHub Releases; the changelog is the release notes. Tag or push only when the owner asks.
 - **Assume this repository is public.** No secrets, real client briefs, real stakeholder names or real business data. Examples and scenarios use invented organizations and synthetic numbers.
 
 ## Pull requests
