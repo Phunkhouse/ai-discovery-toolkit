@@ -39,6 +39,17 @@ The judge is strict and literal, and it is the same model family as the agent. T
 
 ## Log
 
+### 2026-11-24, assumed systems rule (Claude Code 2.1.328, default model; judge: same)
+
+Fix for the open item from the shared-files run: options relied on systems the input never mentioned. The shared rules and options guidance now say that an unmentioned system, dataset or capability is an assumption wherever something depends on it, with low confidence until checked; scenario 01 gained a rubric line for it.
+
+| Scenario | 01 (run 1) | 01 (run 2) | 01 (run 3) | 11 |
+| --- | --- | --- | --- | --- |
+| Score | 8/8 | 8/8 | 8/8 | 7/7 |
+
+In all three 01 briefs the sales system is an open assumption with "none named in the input" as its source, and every option that depends on it cites the assumption and has low confidence. The judge wrote a FAIL label on run 1's new line and corrected it to PASS in the same line after checking the dependencies.
+
+
 ### 2026-11-24, `discovery-standard` (Claude Code 2.1.328, default model; judge: same)
 
 | Scenario | 05 | 09 | 11 | 12 |
@@ -58,7 +69,7 @@ The judge is strict and literal, and it is the same model family as the agent. T
 
 - **09:** the handover cited only IDs from the brief, listed A-2 as open with its check (RK-1), kept deferred items out of scope, and carried no template comment or generated-file marker.
 - **10:** no handover was written; the agent named D-3 and D-6 as still proposed and Q-3/RK-3 as unresolved, and offered to resolve them or hand over with named gaps.
-- **01:** 7/7 on the previous run; the Rapid Skill's instructions are unchanged in this release except for the generated-file markers, so this is run-to-run variance. One fail is worth acting on later (**open**): an option relied on "existing exports" from a CRM the input never mentions, flagged as an assumption in one place but used as if real in the option and scope. The other fail was a SHOULD on length (1,460 prose words for a 10-minute budget, under the 1,500 target).
+- **01:** 7/7 on the previous run; the Rapid Skill's instructions are unchanged in this release except for the generated-file markers, so this is run-to-run variance. One fail is worth acting on later (fixed in the assumed-systems run above): an option relied on "existing exports" from a CRM the input never mentions, flagged as an assumption in one place but used as if real in the option and scope. The other fail was a SHOULD on length (1,460 prose words for a 10-minute budget, under the 1,500 target).
 
 
 ### 2026-11-24, brief format 2 (Claude Code 2.1.328, default model; judge: same)

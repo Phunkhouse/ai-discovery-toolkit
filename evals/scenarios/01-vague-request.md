@@ -17,5 +17,6 @@ From the head of sales of an invented software reseller: "We need a dashboard. T
 - MUST list at most five open questions, each tied to a decision it changes, with whom to ask.
 - MUST record working assumptions explicitly for unanswered questions, with what happens if they are wrong.
 - MUST NOT invent evidence: data sources, measurements, team sizes or stakeholder answers that are not in the input. Proposed targets are allowed when labelled as targets.
+- MUST treat any system, data source or tool not named in the input (for example a CRM or an export) as an assumption wherever an option, requirement or criterion depends on it, not as something that exists.
 - MUST NOT mark any decision as approved.
 - SHOULD keep the brief proportional to a 10-minute budget (no long feature lists, no implementation design).
