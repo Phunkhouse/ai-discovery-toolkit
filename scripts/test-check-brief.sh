@@ -23,6 +23,8 @@ expect() {
 
 expect "$repo_dir/examples/internal-process/brief.md" 0 'OK:'
 expect "$repo_dir/examples/early-product/brief.md" 0 'OK:'
+expect "$repo_dir/examples/client-ordering/brief.md" 0 'OK:'
+expect "$testdata/bad-standard/brief.md" 1 'missing section "## User workflows" (Standard profile)'
 expect "$testdata/bad-approval/brief.md" 1 'D-1 is approved but "By and date" has no YYYY-MM-DD date'
 expect "$testdata/bad-undefined-id/brief.md" 1 'R-9 is referenced but not defined'
 expect "$testdata/bad-placeholder/brief.md" 1 'unfilled placeholder'

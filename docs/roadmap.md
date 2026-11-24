@@ -7,7 +7,7 @@ Provisional. Each stage starts only after the previous one has been used on real
 | Profile | For | Typical budget | Status |
 | --- | --- | --- | --- |
 | **Rapid** | Time-boxed assignments, hackathons, small features, quick business problem assessments. | 10–30 minutes | v0.1 |
-| **Standard** | New products, meaningful features, freelance client discovery, early validation. | hours to a few days, across sessions | planned for v0.2 |
+| **Standard** | New products, meaningful features, freelance client discovery, early validation. | hours to a few days, across sessions | v0.2 (in progress) |
 | **Deep** | Significant investments, strategic initiatives, high-risk problems. | days to weeks | planned for v0.4 |
 
 Profiles are about discovery depth only. They are independent of the Starter Pack's Sprint, MVP and Production governance profiles: a small feature in a production application can need only Rapid Discovery, and a hackathon idea can deserve a Standard one.
@@ -19,9 +19,10 @@ One self-contained Skill, `discovery-rapid`, with the complete Rapid workflow, b
 ## v0.2: Standard Discovery and modular Skills
 
 - **Done:** shared method files in `shared/`, synced into each Skill ([decision 0003](decisions/0003-shared-method-synced-copies.md)), and `discovery-handover` as the one step that is a Skill of its own. Other steps (framing, questions, options) stay inside the profile Skills unless real use shows a need to invoke them alone.
-- A `discovery-standard` Skill: structured stakeholder analysis, user workflows, product requirements beyond a single slice, MVP scope, validation hypotheses, a fuller feasibility and risk assessment, and a structured product specification.
-- A stakeholder question pack for asynchronous discovery: per-recipient messages with context, and a way to record replies that arrive out of order.
-- An upgrade path from a Rapid brief to a Standard one without starting again.
+- **Done:** `discovery-standard` ([decision 0004](decisions/0004-standard-profile-one-brief.md)): stakeholder map, user workflows, prioritized requirements, MVP scope, a validation plan, three approval checkpoints; the handover doubles as the structured product specification.
+- **Done:** a stakeholder question pack for asynchronous discovery and rules for replies that arrive out of order (in `discovery-standard`).
+- **Done:** upgrading a Rapid brief to Standard in place.
+- Open: release v0.2.0 after the owner has used Standard on at least one real discovery.
 - **Done:** a compact brief format (format 2, [decision 0002](decisions/0002-compact-brief-format.md)): one register table, scope as labelled lines, a length warning in the checker.
 - Lessons from real Rapid usage folded back into the rules and scenarios.
 

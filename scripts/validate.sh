@@ -63,7 +63,9 @@ done < <(find "$repo_dir" -path "$repo_dir/.git" -prune -o -path "$repo_dir/eval
 bash "$script_dir/sync-shared.sh" --check
 
 # The brief checker against the template, the examples and the regression fixtures.
-bash "$repo_dir/shared/scripts/check-brief.sh" --template "$repo_dir/skills/discovery-rapid/templates/brief.md" >/dev/null
+for brief_template in "$repo_dir"/skills/*/templates/brief.md; do
+  bash "$repo_dir/shared/scripts/check-brief.sh" --template "$brief_template" >/dev/null || fail "Template fails the brief checker: $brief_template"
+done
 bash "$script_dir/test-check-brief.sh"
 
 # Evals: every scenario has at least one turn and a rubric.
