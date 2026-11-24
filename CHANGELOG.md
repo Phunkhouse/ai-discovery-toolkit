@@ -2,6 +2,7 @@
 
 ## Unreleased (v0.2)
 
+- Rules: a system, dataset or capability the inputs do not mention is treated as an assumption wherever an option, requirement or criterion depends on it (found in eval scenario 01).
 - **New Skill `discovery-standard`** ([decision 0004](docs/decisions/0004-standard-profile-one-brief.md)): stakeholder map (`P-`), question packs and out-of-order replies, user workflows (`W-`), must/should/could/won't requirements, MVP scope, a validation plan with thresholds set before testing, and three approval checkpoints. Upgrades a Rapid brief in place. Rerun `./scripts/install.sh` to install it.
 - The shared checker selects required sections from the profile line and applies Standard's limits (3,500 words, 10 open questions); the shared rules list limits per profile; the handover template gains an optional User workflows section and the readiness gate a Standard item.
 - Third worked example (Standard, a freelance client engagement) and eval scenarios 11 and 12.

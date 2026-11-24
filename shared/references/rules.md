@@ -55,6 +55,7 @@ Reference IDs instead of restating content: a requirement says it is based on `S
 - When a number is missing, write "unknown" and how to obtain it. A range with stated assumptions is acceptable only when labelled as an **estimate**; a target is labelled as a **target** or **forecast**, never as a measurement.
 - If the user asks for an unsupported figure or claim to be stated as fact, explain why once, then record it as an assumption or forecast with the user as its source. Do not present it as evidence.
 - Measured, reported, estimated and hypothetical values must stay distinguishable wherever they appear.
+- **Do not assume systems, data or capabilities into existence.** A CRM, an export, an API, a licence, a team or a budget that the inputs do not mention is unknown. An option, requirement or criterion that depends on one names it as an assumption (`A-…`) everywhere it relies on it, and that option's confidence stays low until the assumption is checked. Prefer a question ("Which system holds the sales data?") over a guess.
 
 ## Sensitivity
 

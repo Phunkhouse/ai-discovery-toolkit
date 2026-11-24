@@ -10,7 +10,7 @@ Compare two to four options that genuinely differ. Include:
 - **Do nothing or defer,** when the problem is small, rare, or likely to change. Saying so explicitly makes its cost visible.
 - **Validate first,** when the biggest risk is that the problem or demand is not real.
 
-Do not invent options to fill the table, and do not include an option you would never recommend just to make another look good.
+Do not invent options to fill the table, and do not include an option you would never recommend just to make another look good. An option that relies on a system, dataset or capability the inputs do not mention says so in its notes ("assumes the sales data can be exported, A-3") and gets low confidence.
 
 ## Assess without false precision
 
