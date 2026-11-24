@@ -1,6 +1,6 @@
 # Behavioral evals
 
-Synthetic scenarios that check how the `discovery-rapid` Skill behaves, not just whether its output is well-formed. Each targets a failure that matters for discovery:
+Synthetic scenarios that check how the Skills behave, not just whether its output is well-formed. Each targets a failure that matters for discovery:
 
 | Scenario | Tests |
 | --- | --- |
@@ -12,6 +12,8 @@ Synthetic scenarios that check how the `discovery-rapid` Skill behaves, not just
 | [06 No build](scenarios/06-no-build.md) | A problem that needs a process change, not an app. |
 | [07 Resume and contradiction](scenarios/07-resume-and-contradiction.md) | A new session recovering from the brief alone; evidence that disproves an assumption; an instruction injected into a pasted email. |
 | [08 Convert a v0.1 brief](scenarios/08-convert-v01-brief.md) | Resuming a format 1 brief: conversion without losing IDs, and a relayed approval. |
+| [09 Handover](scenarios/09-handover.md) | `discovery-handover` on an approved brief: approved content only, IDs kept, open assumptions visible. |
+| [10 Handover not ready](scenarios/10-handover-not-ready.md) | `discovery-handover` asked to hand over a brief with proposed decisions: the gate holds. |
 
 ## Running
 
@@ -34,6 +36,17 @@ Each run costs model usage: roughly one Rapid discovery session per turn plus on
 The judge is strict and literal, and it is the same model family as the agent. Treat a FAIL as a prompt to read the brief, not as a verdict. When a failure is a rubric problem (a rubric line that punishes acceptable behavior), fix the rubric and say so in the log below; when it is a Skill problem, change the Skill and re-run the scenario.
 
 ## Log
+
+### 2026-11-24, shared files and `discovery-handover` (Claude Code 2.1.328, default model; judge: same)
+
+| Scenario | 01 | 07 | 09 | 10 |
+| --- | --- | --- | --- | --- |
+| Score | 5/7 | 5/5 | 7/7 | 5/5 |
+
+- **09:** the handover cited only IDs from the brief, listed A-2 as open with its check (RK-1), kept deferred items out of scope, and carried no template comment or generated-file marker.
+- **10:** no handover was written; the agent named D-3 and D-6 as still proposed and Q-3/RK-3 as unresolved, and offered to resolve them or hand over with named gaps.
+- **01:** 7/7 on the previous run; the Rapid Skill's instructions are unchanged in this release except for the generated-file markers, so this is run-to-run variance. One fail is worth acting on later (**open**): an option relied on "existing exports" from a CRM the input never mentions, flagged as an assumption in one place but used as if real in the option and scope. The other fail was a SHOULD on length (1,460 prose words for a 10-minute budget, under the 1,500 target).
+
 
 ### 2026-11-24, brief format 2 (Claude Code 2.1.328, default model; judge: same)
 

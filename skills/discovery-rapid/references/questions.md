@@ -1,3 +1,4 @@
+<!-- Generated from shared/references/questions.md by scripts/sync-shared.sh. Edit that file, then run the script. -->
 # Questions that change decisions
 
 Collect the unknowns that would change what gets built, or whether. Not everything that would be interesting to know.

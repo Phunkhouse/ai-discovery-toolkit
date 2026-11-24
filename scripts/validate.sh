@@ -31,7 +31,7 @@ for skill_dir in "$repo_dir"/skills/*; do
   while IFS= read -r reference; do
     [[ -n "$reference" ]] || continue
     [[ -e "$skill_dir/$reference" ]] || fail "Missing bundled file $reference named in $skill"
-  done < <(grep -hoE '(references|templates|scripts)/[A-Za-z0-9._-]+\.(md|sh)' "$skill_dir"/SKILL.md "$skill_dir"/references/*.md | sort -u)
+  done < <(cat "$skill_dir"/SKILL.md "$skill_dir"/references/*.md | grep -v 'Generated from shared/' | grep -oE '(references|templates|scripts)/[A-Za-z0-9._-]+\.(md|sh)' | sort -u)
 
   if grep -rnE '\.\./\.\./|AskUserQuestion|TodoWrite|ExitPlanMode|\$CLAUDE_' "$skill_dir"; then
     fail "Skills must be self-contained and agent-neutral (no ../../ paths or agent-specific tool names): $skill_dir"
@@ -59,8 +59,11 @@ while IFS= read -r script; do
   bash -n "$script" || fail "Syntax error: $script"
 done < <(find "$repo_dir" -path "$repo_dir/.git" -prune -o -path "$repo_dir/evals/results" -prune -o -type f -name '*.sh' -print)
 
+# Generated copies of shared/ files must match their source (decision 0003).
+bash "$script_dir/sync-shared.sh" --check
+
 # The brief checker against the template, the examples and the regression fixtures.
-bash "$repo_dir/skills/discovery-rapid/scripts/check-brief.sh" --template "$repo_dir/skills/discovery-rapid/templates/brief.md" >/dev/null
+bash "$repo_dir/shared/scripts/check-brief.sh" --template "$repo_dir/skills/discovery-rapid/templates/brief.md" >/dev/null
 bash "$script_dir/test-check-brief.sh"
 
 # Evals: every scenario has at least one turn and a rubric.

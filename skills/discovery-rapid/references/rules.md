@@ -1,3 +1,4 @@
+<!-- Generated from shared/references/rules.md by scripts/sync-shared.sh. Edit that file, then run the script. -->
 # Discovery rules
 
 These apply throughout every discovery session. They exist so that facts, assumptions and decisions stay distinguishable across sessions and agents, and so that the owner, not the agent, makes product decisions.

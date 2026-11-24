@@ -11,6 +11,7 @@ It does not assume that every problem needs software, automation or AI. A proces
 | Skill | Profile | What it does |
 | --- | --- | --- |
 | [`discovery-rapid`](skills/discovery-rapid/SKILL.md) | Rapid (10–30 minutes) | Problem framing, a register of facts, statements, requirements, assumptions and conflicts, up to five decision-changing questions, options and a recommendation, scope, acceptance criteria, metrics, risks, decisions with approvals, session continuity and handover. |
+| [`discovery-handover`](skills/discovery-handover/SKILL.md) | any | Hands over an approved brief, or regenerates a stale handover: checks the readiness gate, writes `handover.md` from the approved parts only, marks the brief handed over. The Rapid Skill can do this itself; this is the direct entry point, and the one future profiles share. |
 
 Standard and Deep Discovery are planned; see the [roadmap](docs/roadmap.md).
 
@@ -26,7 +27,7 @@ The installer links each Skill into `~/.claude/skills` (Claude Code) and `~/.age
 
 - **Update:** `git pull`. The links point at the clone, so installed Skills update with it. Rerun the installer when a pull adds a Skill.
 - **New machine:** clone and run the installer. Everything needed lives in this repository; nothing is machine-specific.
-- **Without installing:** the Skill folder is self-contained. Copy or link `skills/discovery-rapid/` into a project's `.claude/skills/` or `.agents/skills/` to use it in that project only.
+- **Without installing:** each Skill folder is self-contained. Copy or link `skills/discovery-rapid/` (and `skills/discovery-handover/` if you want it) into a project's `.claude/skills/` or `.agents/skills/` to use it in that project only.
 
 ## Use
 
@@ -44,7 +45,7 @@ A session goes like this:
 3. It compares options, recommends one direction, drafts the scope, acceptance criteria and metrics, and ends with a numbered list of **decisions needed**. Answer in chat, for example "1 yes, 2 no, 3 defer". Nothing is marked approved until you say so.
 4. Every session ends with the brief's *Resume here* section rewritten and a structural check run.
 
-To **continue** later, in a new session or another agent, invoke the Skill again and paste the new information; it resumes from the brief. To **hand over**, say "hand it over" once the direction, scope and criteria are approved: it checks a readiness gate and writes `handover.md` next to the brief for the engineering agent.
+To **continue** later, in a new session or another agent, invoke the Skill again and paste the new information; it resumes from the brief. To **hand over**, say "hand it over" once the direction, scope and criteria are approved: it checks a readiness gate and writes `handover.md` next to the brief for the engineering agent. `/discovery-handover` (`$discovery-handover` in Codex) does the same directly, and regenerates a handover that has gone stale.
 
 The [examples](examples/README.md) show two complete runs with synthetic data.
 
@@ -66,7 +67,7 @@ The files belong to your project, not to this toolkit. They keep people as roles
 - **No fabricated evidence:** missing numbers are written as unknown with a way to measure them; targets and estimates are labelled.
 - **One file per discovery,** IDs instead of repetition, entries marked `disproved` or `superseded` instead of deleted, and a handover that knows when it is stale.
 
-The full rules are in [`references/rules.md`](skills/discovery-rapid/references/rules.md).
+The full rules are in [`shared/references/rules.md`](shared/references/rules.md).
 
 ## With the other toolkits
 
@@ -86,10 +87,12 @@ More in the [specification](docs/SPEC.md).
 
 | Path | Contents |
 | --- | --- |
-| `skills/discovery-rapid/` | The Skill: `SKILL.md` (workflow), `references/` (rules, questions, options, scope and metrics, handover), `templates/` (brief, handover), `scripts/check-brief.sh` |
+| `shared/` | The single source of the method files several Skills use: `references/` (rules, questions, options, scope and metrics, handover), `templates/handover.md`, `scripts/check-brief.sh` |
+| `skills/discovery-rapid/` | `SKILL.md` (Rapid workflow), `templates/brief.md`, `shared.txt`, and generated copies of the shared files it lists |
+| `skills/discovery-handover/` | `SKILL.md` (handover procedure), `shared.txt`, and generated copies of the shared files it lists |
 | `examples/` | Two worked examples with synthetic data |
 | `evals/` | Behavioral scenarios and a headless runner with rubric grading |
-| `scripts/` | `install.sh`, `validate.sh`, checker regression cases |
+| `scripts/` | `install.sh`, `sync-shared.sh`, `validate.sh`, checker regression cases |
 | `docs/` | Specification, ecosystem and handover contract, roadmap, decision records |
 
 ## Development

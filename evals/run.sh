@@ -4,7 +4,7 @@ set -euo pipefail
 
 evals_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 repo_dir="$(cd -- "$evals_dir/.." && pwd -P)"
-checker="$repo_dir/skills/discovery-rapid/scripts/check-brief.sh"
+checker="$repo_dir/shared/scripts/check-brief.sh"
 model=''
 judge_model=''
 grade=1
@@ -16,7 +16,7 @@ usage() {
 Usage: evals/run.sh [--model MODEL] [--judge-model MODEL] [--no-grade] [--keep] [SCENARIO ...]
 
 Runs each scenario (a file or a number such as 03; default: all) in a fresh
-temporary project with the discovery-rapid Skill linked into .claude/skills and
+temporary project with every Skill linked into .claude/skills and
 .agents/skills, and copies any "Seed:" files into it. Every "## Turn N" block runs as a separate headless session, so
 later turns test recovery from the files alone. After the turns, the brief checker
 runs on every brief produced and, unless --no-grade, a judge session scores the
@@ -85,8 +85,11 @@ for scenario in "${scenarios[@]}"; do
   work="$(mktemp -d)"
   project="$work/project"
   mkdir -p "$project/.claude/skills" "$project/.agents/skills"
-  ln -s "$repo_dir/skills/discovery-rapid" "$project/.claude/skills/discovery-rapid"
-  ln -s "$repo_dir/skills/discovery-rapid" "$project/.agents/skills/discovery-rapid"
+  for skill in "$repo_dir"/skills/*/; do
+    skill="${skill%/}"
+    ln -s "$skill" "$project/.claude/skills/${skill##*/}"
+    ln -s "$skill" "$project/.agents/skills/${skill##*/}"
+  done
   printf '[%s] %s in %s\n' "$stamp" "$id" "$project"
 
   # Seed lines put files into the project before the first turn: "Seed: <repo path> -> <project path>".

@@ -1,6 +1,6 @@
 # Worked examples
 
-Two complete Rapid Discovery runs with synthetic data. Each has the input as it arrived, the resulting brief, and a walkthrough of how the sessions went. Both briefs pass `skills/discovery-rapid/scripts/check-brief.sh`, and `scripts/validate.sh` checks them on every change.
+Two complete Rapid Discovery runs with synthetic data. Each has the input as it arrived, the resulting brief, and a walkthrough of how the sessions went. Both briefs pass `shared/scripts/check-brief.sh`, and `scripts/validate.sh` checks them on every change.
 
 | Example | Situation | Shows | Ends as |
 | --- | --- | --- | --- |

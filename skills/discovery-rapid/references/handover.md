@@ -1,3 +1,4 @@
+<!-- Generated from shared/references/handover.md by scripts/sync-shared.sh. Edit that file, then run the script. -->
 # Handover to engineering
 
 The handover turns an approved brief into short, actionable context for whoever builds it, human or agent. It carries only what is approved, plus the open assumptions and questions the builders must know about.
@@ -16,7 +17,7 @@ If the approved direction is not a build (process change, adoption, validation, 
 
 ## Writing it
 
-1. Copy `templates/handover.md` next to the brief as `handover.md`.
+1. Copy `templates/handover.md` next to the brief as `handover.md`, and remove all its comments, including the generated-file marker on the first line.
 2. Fill it from the brief only; material risks are the register's `RK-` rows. Keep IDs (`R-2`, `AC-3`, `A-4`) so every line can be traced back. Do not add requirements, criteria or rationale that are not in the brief.
 3. Set the source line to the brief's current `Updated` date. Set the brief's status to `handed over`, add a decision-log entry for the handover, and rewrite *Resume here*.
 4. Leave implementation choices to the builders unless the owner set them as constraints (`C-`).

@@ -1,3 +1,4 @@
+<!-- Generated from shared/references/options.md by scripts/sync-shared.sh. Edit that file, then run the script. -->
 # Options and recommendation
 
 ## Generate options
