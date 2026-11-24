@@ -75,7 +75,7 @@ When answers or new information arrive, in this session or a later one:
 
 ## 5. Handover
 
-Only when the user asks for a handover or approves the brief for building. Read `references/handover.md`, check its readiness gate, then write `handover.md` next to the brief from `templates/handover.md`.
+Only when the user asks for a handover or approves the brief for building. Read `references/handover.md`, check its readiness gate, then write `handover.md` next to the brief from `templates/handover.md`. The separate `discovery-handover` Skill follows the same procedure; this Skill does not need it installed.
 
 ## 6. Finish every session
 

@@ -18,7 +18,7 @@ One self-contained Skill, `discovery-rapid`, with the complete Rapid workflow, b
 
 ## v0.2: Standard Discovery and modular Skills
 
-- Split the shared method out of `discovery-rapid` into reusable Skills that both profiles call, for example `discovery-frame`, `discovery-questions`, `discovery-options`, `discovery-handover`. Decide first how shared references are packaged while keeping Skills installable on their own (see decision 0001's revisit condition).
+- **Done:** shared method files in `shared/`, synced into each Skill ([decision 0003](decisions/0003-shared-method-synced-copies.md)), and `discovery-handover` as the one step that is a Skill of its own. Other steps (framing, questions, options) stay inside the profile Skills unless real use shows a need to invoke them alone.
 - A `discovery-standard` Skill: structured stakeholder analysis, user workflows, product requirements beyond a single slice, MVP scope, validation hypotheses, a fuller feasibility and risk assessment, and a structured product specification.
 - A stakeholder question pack for asynchronous discovery: per-recipient messages with context, and a way to record replies that arrive out of order.
 - An upgrade path from a Rapid brief to a Standard one without starting again.

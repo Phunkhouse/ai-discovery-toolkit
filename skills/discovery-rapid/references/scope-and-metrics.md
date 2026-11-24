@@ -1,3 +1,4 @@
+<!-- Generated from shared/references/scope-and-metrics.md by scripts/sync-shared.sh. Edit that file, then run the script. -->
 # Scope, acceptance criteria and success
 
 Work only on the recommended direction. If no direction is recommended yet, scope the next discovery step or experiment instead.

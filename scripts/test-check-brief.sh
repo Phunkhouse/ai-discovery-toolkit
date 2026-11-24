@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# Regression cases for skills/discovery-rapid/scripts/check-brief.sh.
+# Regression cases for shared/scripts/check-brief.sh.
 set -euo pipefail
 
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 repo_dir="$(cd -- "$script_dir/.." && pwd -P)"
-checker="$repo_dir/skills/discovery-rapid/scripts/check-brief.sh"
+# The source in shared/; the copies in each Skill are checked against it by sync-shared.sh --check.
+checker="$repo_dir/shared/scripts/check-brief.sh"
 testdata="$script_dir/testdata"
 failures=0
 

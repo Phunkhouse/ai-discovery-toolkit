@@ -1,3 +1,4 @@
+<!-- Generated from shared/templates/handover.md by scripts/sync-shared.sh. Edit that file, then run the script. -->
 # Handover: <short title>
 
 - **Source:** `brief.md`, Updated <YYYY-MM-DD>. This file is a snapshot of the approved parts of that brief. If the brief's `Updated` is later, this handover is stale: ask for it to be regenerated before relying on it.

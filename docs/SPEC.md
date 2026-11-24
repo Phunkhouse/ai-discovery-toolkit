@@ -12,6 +12,8 @@ In v0.1:
 
 - One self-contained Skill, `discovery-rapid`, with the complete Rapid workflow: start or resume, problem framing, an evidence register, up to five decision-changing questions (interactive or asynchronous), two to four options including non-software ones, a proposed recommendation, scope with non-goals and deferred work, acceptance criteria, metrics and hypotheses, risks and feasibility checks, decisions with explicit approvals, new-evidence updates, and handover.
 - Brief and handover templates; a dependency-free structural checker with regression fixtures.
+- A `discovery-handover` Skill for handing over or regenerating from any approved brief (v0.2).
+- Shared method files in `shared/`, synced into each Skill (v0.2).
 - Two worked examples with synthetic data.
 - Eight behavioral scenarios with a headless runner and rubric grading.
 - An installer for Claude Code and Codex, and a validation script run in CI.

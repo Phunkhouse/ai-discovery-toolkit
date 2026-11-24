@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Generated from shared/scripts/check-brief.sh by scripts/sync-shared.sh. Edit that file, then run the script.
 # Structural check for a Rapid Discovery brief (and its handover, when handed over).
 # It checks structure and traceability, not the quality of the thinking.
 set -euo pipefail
