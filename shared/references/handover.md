@@ -11,6 +11,7 @@ Write a handover only when all of these hold. Otherwise tell the user what is mi
 3. Every open assumption that a must-have depends on is either `accepted` by the owner or has a named check that happens before or during the build.
 4. No conflict (`X-`) that affects the must-have scope is still open.
 5. `scripts/check-brief.sh` passes on the brief.
+6. **Standard briefs:** the must-have requirements and the workflows they belong to are approved, and every hypothesis the build depends on is `supported` or has its test inside the approved scope.
 
 If the approved direction is not a build (process change, adoption, validation, defer, don't build), say so: the handover then describes that next step, not software.
 
@@ -34,6 +35,8 @@ Not required. When the target project uses the AI Starter Pack, the handover sec
 | --- | --- | --- |
 | Problem and outcome | Goal | `docs/SPEC.md` Purpose and users |
 | Must have, acceptance criteria | Acceptance criteria (keep the `AC-` IDs) | `docs/SPEC.md` Scope; milestone acceptance checks |
+| User workflows (Standard) | Goal, or a short list under it | `docs/SPEC.md` Important workflows and requirements |
+| Should and could requirements (Standard) | Deferred | the project's backlog, in priority order |
 | Non-goals | Non-goals | `docs/SPEC.md` Scope, out of scope |
 | Deferred | Deferred | the project's backlog |
 | Confirmed facts, approved requirements and constraints | Facts and assumptions, status `confirmed` | `docs/assumptions.md` Confirmed |

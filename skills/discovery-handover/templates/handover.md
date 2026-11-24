@@ -25,6 +25,12 @@
 
 - <item, with reason> (D-…)
 
+## User workflows
+
+<!-- Standard briefs only: the future workflows (W-) in the approved scope, one short block each: actor, trigger, steps, failure cases. Delete this section for a Rapid brief. -->
+
+- **W-1** <actor>: <trigger> → <steps> → <outcome>. Failure cases: <…>.
+
 ## Acceptance criteria
 
 - [ ] **AC-1** <observable result>; checked by <…> (R-…)

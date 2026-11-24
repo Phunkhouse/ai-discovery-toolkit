@@ -6,14 +6,15 @@ You give it an unstructured brief (a client email, a feature request, a founder'
 
 It does not assume that every problem needs software, automation or AI. A process change, an existing tool, a validation test or "don't build" are valid outcomes.
 
-## What's in v0.1
+## Skills
 
 | Skill | Profile | What it does |
 | --- | --- | --- |
 | [`discovery-rapid`](skills/discovery-rapid/SKILL.md) | Rapid (10–30 minutes) | Problem framing, a register of facts, statements, requirements, assumptions and conflicts, up to five decision-changing questions, options and a recommendation, scope, acceptance criteria, metrics, risks, decisions with approvals, session continuity and handover. |
+| [`discovery-standard`](skills/discovery-standard/SKILL.md) | Standard (hours, across sessions) | Everything in Rapid, plus a stakeholder map with decision rights, question packs for asynchronous answers, user workflows with failure cases, must/should/could/won't requirements, MVP scope and a validation plan with thresholds set before testing, approved at three checkpoints. Can upgrade a Rapid brief in place. |
 | [`discovery-handover`](skills/discovery-handover/SKILL.md) | any | Hands over an approved brief, or regenerates a stale handover: checks the readiness gate, writes `handover.md` from the approved parts only, marks the brief handed over. The Rapid Skill can do this itself; this is the direct entry point, and the one future profiles share. |
 
-Standard and Deep Discovery are planned; see the [roadmap](docs/roadmap.md).
+Choose Rapid for a quick, time-boxed assessment and Standard when several stakeholders, workflows or real investment are involved; Rapid recommends Standard when it is not enough. Deep Discovery is planned; see the [roadmap](docs/roadmap.md).
 
 ## Install
 
@@ -33,7 +34,7 @@ The installer links each Skill into `~/.claude/skills` (Claude Code) and `~/.age
 
 In the project the discovery is for (or any folder, if there is no project yet):
 
-- **Claude Code:** `/discovery-rapid` followed by the brief, or describe the request and let the Skill trigger.
+- **Claude Code:** `/discovery-rapid` (or `/discovery-standard`) followed by the brief, or describe the request and let the Skill trigger.
 - **Codex:** mention `$discovery-rapid` with the brief, or pick it from the skills list.
 
 Add a time budget and who decides if you like, for example "20 minutes, I'm the decision owner, the CS lead can answer tomorrow". Otherwise the Skill uses 20 minutes and states its defaults.
@@ -79,7 +80,7 @@ The toolkit is independently usable. With the AI Starter Pack, the handover maps
 - **Codex:** the Skill uses only the portable `name`/`description` frontmatter, a description under Codex's 500-character limit, no agent-specific tools and no paths outside its folder, and the installer uses the same `~/.agents/skills` location as the other toolkits. It has **not** been run under Codex for this release, because no Codex CLI was available; `evals/run.sh` accepts `EVAL_AGENT_CMD` to do so.
 - **Time budgets are approximate.** The agent checks the shell clock at each pass where it can; it cannot see how long you take to answer.
 - **The structural checker checks form, not judgement.** It catches missing sections, placeholders, undefined IDs, unrecorded approvals, stale handovers and briefs over 1,500 words; the quality of the reasoning is what the behavioral scenarios and your review are for.
-- Only the Rapid profile exists. For large, high-risk or multi-stakeholder problems, the Skill says when Rapid is not enough rather than stretching.
+- Rapid and Standard exist; Deep does not. For strategic or high-risk problems, Standard says what extra research would be needed rather than stretching.
 
 More in the [specification](docs/SPEC.md).
 

@@ -2,6 +2,9 @@
 
 ## Unreleased (v0.2)
 
+- **New Skill `discovery-standard`** ([decision 0004](docs/decisions/0004-standard-profile-one-brief.md)): stakeholder map (`P-`), question packs and out-of-order replies, user workflows (`W-`), must/should/could/won't requirements, MVP scope, a validation plan with thresholds set before testing, and three approval checkpoints. Upgrades a Rapid brief in place. Rerun `./scripts/install.sh` to install it.
+- The shared checker selects required sections from the profile line and applies Standard's limits (3,500 words, 10 open questions); the shared rules list limits per profile; the handover template gains an optional User workflows section and the readiness gate a Standard item.
+- Third worked example (Standard, a freelance client engagement) and eval scenarios 11 and 12.
 - **Shared method files** ([decision 0003](docs/decisions/0003-shared-method-synced-copies.md)): rules, references, the handover template and the checker live once in `shared/` and are copied into each Skill by `scripts/sync-shared.sh`; `validate.sh` fails on drift. Skill folders stay self-contained.
 - **New Skill `discovery-handover`:** hands over an approved brief or regenerates a stale handover, with the readiness gate reported item by item. Rerun `./scripts/install.sh` to install it.
 - **Brief format 2** ([decision 0002](docs/decisions/0002-compact-brief-format.md)): one register table for facts, statements, requirements, constraints, assumptions, conflicts and risks; scope as labelled lines; a `Format: 2` header. IDs, statuses, approval rules and the handover are unchanged.

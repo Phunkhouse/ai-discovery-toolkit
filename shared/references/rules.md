@@ -4,7 +4,7 @@ These apply throughout every discovery session. They exist so that facts, assump
 
 ## Evidence kinds and IDs
 
-Every material claim in the brief has an ID, a kind and a source. IDs are never renumbered or reused; a wrong entry is marked, not deleted. Sources are listed as `SRC-` items; facts, statements, requirements, constraints, assumptions, conflicts and risks are rows of the one register table, grouped by kind. Questions, options, criteria, metrics and decisions have their own sections.
+Every material claim in the brief has an ID, a kind and a source. IDs are never renumbered or reused; a wrong entry is marked, not deleted. Sources are listed as `SRC-` items; facts, statements, requirements, constraints, assumptions, conflicts and risks are rows of the one register table, grouped by kind. Questions, options, criteria, metrics and decisions have their own sections. In a Standard brief, stakeholders, workflows and requirements also have their own sections, so requirements move out of the register.
 
 | Prefix | Kind | What it means | Typical status values |
 | --- | --- | --- | --- |
@@ -20,7 +20,9 @@ Every material claim in the brief has an ID, a kind and a source. IDs are never 
 | `D-` | Decision | A choice that shapes the outcome. | `proposed`, `approved`, `rejected`, `needs review`, `superseded by D-…` |
 | `AC-` | Acceptance criterion | Observable result that shows the scope works. | — |
 | `M-` | Metric | How success is measured. | — |
-| `H-` | Hypothesis | A testable belief about the outcome. | — |
+| `H-` | Hypothesis | A testable belief about the outcome. | Standard: `untested`, `testing`, `supported`, `refuted` |
+| `P-` | Stakeholder (Standard) | A role with an interest in the outcome or a say in it. | `reached`, `not yet reached`, `not reachable` |
+| `W-` | User workflow (Standard) | A sequence an actor goes through to reach a goal, today or with the solution. | — |
 | `RK-` | Risk or dependency | Something that could make the solution fail, harm, or block it. *Notes:* its kind and the mitigation or check. | `known`, `assumed`, `checked` |
 
 Reference IDs instead of restating content: a requirement says it is based on `S-2`; a criterion says it checks `R-1`. This is the traceability; keep it light and only where it helps someone check a conclusion.
@@ -65,11 +67,21 @@ The brief is usually committed to a repository. Keep in it only what discovery n
 
 ## Proportionality
 
-Rapid Discovery is deliberately small. Per round: at most five open questions, two to four options, one to three metrics, about seven acceptance criteria. The whole brief should read in a few minutes.
+Each profile has limits; stay within them and recommend a deeper profile rather than stretching one.
+
+| Per round | Rapid | Standard |
+| --- | --- | --- |
+| Open questions | at most 5 | at most 10, grouped by stakeholder |
+| Options | 2–4 | 3–5 |
+| Metrics | 1–3 | 2–5 |
+| Acceptance criteria | about 7 | about 15, grouped by workflow |
+| Length (prose words) | under about 1,500; under 800 for a small problem | under about 3,500 |
+
+Rapid Discovery is deliberately small: the whole brief should read in a few minutes. Standard should still read in about a quarter of an hour.
 
 Size the brief to the problem, not to the template. A small or low-stakes problem gets a short brief: one or two rows per table, "None" for a section with nothing material, one or two acceptance criteria and one metric, no optional scope or risk rows added for completeness. Every required heading stays, so the brief remains checkable, but a heading followed by "None" is a good answer. When the recommendation is not a build, scope and acceptance criteria describe the next step (a trial, a process change, a check) in a few lines, not a rollout plan.
 
-Length targets: under about 800 words for a small or low-stakes problem, under about 1,500 for a typical Rapid brief; the checker warns above 1,500. Before finishing a session, check the length (`wc -w`) and cut every row and sentence written in this session that does not change a decision or warn the reader of a risk. Requirements the problem statement already implies, constraints nobody stated, and risks with no realistic consequence are the usual excess. **Length never justifies removing an ID that was already saved in the brief:** shorten its wording, or mark it (`dropped`, `superseded by …`), but keep the row. If the problem genuinely needs more (many stakeholders, significant investment, regulatory exposure, several user groups with competing needs), say so and recommend a deeper discovery, explaining what it should answer, instead of growing the brief.
+The checker warns above each profile's length target. Before finishing a session, check the length (`wc -w`) and cut every row and sentence written in this session that does not change a decision or warn the reader of a risk. Requirements the problem statement already implies, constraints nobody stated, and risks with no realistic consequence are the usual excess. **Length never justifies removing an ID that was already saved in the brief:** shorten its wording, or mark it (`dropped`, `superseded by …`), but keep the row. If the problem genuinely needs more (many stakeholders, significant investment, regulatory exposure, several user groups with competing needs), say so and recommend a deeper discovery (from Rapid, a Standard Discovery with `discovery-standard`, which extends the same brief), explaining what it should answer, instead of growing the brief.
 
 ## Staying current
 

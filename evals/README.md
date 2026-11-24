@@ -14,6 +14,8 @@ Synthetic scenarios that check how the Skills behave, not just whether its outpu
 | [08 Convert a v0.1 brief](scenarios/08-convert-v01-brief.md) | Resuming a format 1 brief: conversion without losing IDs, and a relayed approval. |
 | [09 Handover](scenarios/09-handover.md) | `discovery-handover` on an approved brief: approved content only, IDs kept, open assumptions visible. |
 | [10 Handover not ready](scenarios/10-handover-not-ready.md) | `discovery-handover` asked to hand over a brief with proposed decisions: the gate holds. |
+| [11 Standard client discovery](scenarios/11-standard-client.md) | `discovery-standard` over two sessions: stakeholders, question pack, checkpoint A, replies out of order, existing products. |
+| [12 Upgrade Rapid to Standard](scenarios/12-upgrade-rapid-to-standard.md) | Extending a Rapid brief in place without losing IDs or approvals. |
 
 ## Running
 
@@ -36,6 +38,17 @@ Each run costs model usage: roughly one Rapid discovery session per turn plus on
 The judge is strict and literal, and it is the same model family as the agent. Treat a FAIL as a prompt to read the brief, not as a verdict. When a failure is a rubric problem (a rubric line that punishes acceptable behavior), fix the rubric and say so in the log below; when it is a Skill problem, change the Skill and re-run the scenario.
 
 ## Log
+
+### 2026-11-24, `discovery-standard` (Claude Code 2.1.328, default model; judge: same)
+
+| Scenario | 05 | 09 | 11 | 12 |
+| --- | --- | --- | --- | --- |
+| Score | 7/7 | 7/7 | 7/7 | 6/6 |
+
+- **11:** session 1 stopped at checkpoint A with D-1 proposed and a question pack by recipient; session 2 recorded each reply with its own source, kept the retention question open after a partial answer, and put the accounting package's unused document request feature first among the options. It recorded D-1 as approved by the user (the freelancer) and noted that the managing partner's own confirmation was not yet recorded. Briefs: 1,609 and 2,523 prose words.
+- **12:** comparing IDs before and after the upgrade found none missing; earlier approvals stayed approved, D-3 and D-6 stayed proposed, requirements moved into the Requirements section with priorities marked "suggested", and the upgrade was recorded as D-8 on the founder's explicit request. 2,356 prose words.
+- **05, 09:** regression checks for Rapid and handover after the shared checker became profile-aware.
+
 
 ### 2026-11-24, shared files and `discovery-handover` (Claude Code 2.1.328, default model; judge: same)
 
