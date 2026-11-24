@@ -7,3 +7,4 @@ Copy `template.md` to `0001-short-title.md` and increment numbers without renumb
 | Record | Status |
 | --- | --- |
 | [0001. One self-contained Rapid Discovery Skill, Markdown-first](0001-self-contained-rapid-skill.md) | accepted |
+| [0002. A compact brief format](0002-compact-brief-format.md) | accepted |

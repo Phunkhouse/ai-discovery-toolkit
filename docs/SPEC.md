@@ -13,7 +13,7 @@ In v0.1:
 - One self-contained Skill, `discovery-rapid`, with the complete Rapid workflow: start or resume, problem framing, an evidence register, up to five decision-changing questions (interactive or asynchronous), two to four options including non-software ones, a proposed recommendation, scope with non-goals and deferred work, acceptance criteria, metrics and hypotheses, risks and feasibility checks, decisions with explicit approvals, new-evidence updates, and handover.
 - Brief and handover templates; a dependency-free structural checker with regression fixtures.
 - Two worked examples with synthetic data.
-- Seven behavioral scenarios with a headless runner and rubric grading.
+- Eight behavioral scenarios with a headless runner and rubric grading.
 - An installer for Claude Code and Codex, and a validation script run in CI.
 
 Out of scope in v0.1:
@@ -51,8 +51,9 @@ Markdown Skill with progressive disclosure: `SKILL.md` is the workflow and names
 - **Time budgets are approximate.** The agent reads the shell clock at pass boundaries; it cannot account for the user's thinking time, and headless runs have no clock discipline beyond that.
 - **The checker is structural.** It cannot tell whether a problem statement is right or a question is good.
 - **The behavioral grading uses a model as judge**, from the same family as the agent under test, with rubrics written by the toolkit author. It catches regressions, not subtle quality differences; read the briefs.
-- **Seven scenarios and two examples** are a small, synthetic basis. Real use will reveal gaps; the roadmap expects that.
-- **Briefs run longer than intended:** about 1,350–2,600 words in the eval runs against targets of 800–1,500. The table-based register is the floor; see the [eval log](../evals/README.md#log).
+- **Eight scenarios and two examples** are a small, synthetic basis. Real use will reveal gaps; the roadmap expects that.
+- **Brief length:** with format 2, eval briefs run about 1,000–1,500 prose words, within the 1,500 target but above the 800 target for small problems; see the [eval log](../evals/README.md#log).
+- **Dropped IDs are not detected mechanically.** The checker sees one version of a brief, so it cannot notice an ID that disappeared between sessions; the rules and scenario 08 cover this.
 - **Single-file brief:** for a Rapid discovery this keeps one source of truth; a long-running Standard discovery may outgrow it.
 
 ## Planning and open questions

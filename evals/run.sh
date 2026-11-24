@@ -17,7 +17,7 @@ Usage: evals/run.sh [--model MODEL] [--judge-model MODEL] [--no-grade] [--keep] 
 
 Runs each scenario (a file or a number such as 03; default: all) in a fresh
 temporary project with the discovery-rapid Skill linked into .claude/skills and
-.agents/skills. Every "## Turn N" block runs as a separate headless session, so
+.agents/skills, and copies any "Seed:" files into it. Every "## Turn N" block runs as a separate headless session, so
 later turns test recovery from the files alone. After the turns, the brief checker
 runs on every brief produced and, unless --no-grade, a judge session scores the
 transcripts and briefs against the scenario's rubric.
@@ -88,6 +88,13 @@ for scenario in "${scenarios[@]}"; do
   ln -s "$repo_dir/skills/discovery-rapid" "$project/.claude/skills/discovery-rapid"
   ln -s "$repo_dir/skills/discovery-rapid" "$project/.agents/skills/discovery-rapid"
   printf '[%s] %s in %s\n' "$stamp" "$id" "$project"
+
+  # Seed lines put files into the project before the first turn: "Seed: <repo path> -> <project path>".
+  while IFS= read -r seed; do
+    from="${seed%% -> *}"; to="${seed##* -> }"
+    mkdir -p "$(dirname "$project/$to")"
+    cp "$repo_dir/$from" "$project/$to"
+  done < <(sed -n 's/^Seed: `\(.*\)` -> `\(.*\)`$/\1 -> \2/p' "$scenario")
 
   turns="$(grep -c '^## Turn [0-9]' "$scenario")"
   checker_result=passed
