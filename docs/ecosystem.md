@@ -1,6 +1,6 @@
 # Ecosystem and handover contract
 
-How the AI Discovery Toolkit relates to the other toolkits, based on their state on 2026-11-24 (AI Starter Pack `a9816ec`, AI Audit Toolkit `921c26f`, AI Social Toolkit `c0ef554`). Each toolkit stays independently usable: no runtime dependencies, no coordinated releases. They connect through shared concepts and portable Markdown files in the target project.
+How the AI Discovery Toolkit relates to the other toolkits, based on their state on 2026-11-24 (AI Starter Pack `b143116`, AI Audit Toolkit `de000bd`, AI Social Toolkit `c0ef554`). Each toolkit stays independently usable: no runtime dependencies, no coordinated releases. They connect through shared concepts and portable Markdown files in the target project.
 
 ## Boundaries
 
@@ -48,12 +48,18 @@ Downstream, the AI Audit Toolkit learns intended behavior from product documenta
 - **Starter Pack MVP keeps an assumptions register.** Open assumptions from discovery move into it at handover with their discovery IDs in the source column; the brief stays as the record of why, and is not kept in step afterwards.
 - **Audit Toolkit's legal and scalability Planning modes** assess specifications. Discovery only names those risks and recommends a check; it does not perform legal or capacity analysis.
 
+## Integrations in place
+
+Each lives in the other repository and needs nothing from this one at runtime:
+
+- **Starter Pack `discovery` recipe** ([Phunkhouse/ai-starter-pack#21](https://github.com/Phunkhouse/ai-starter-pack/pull/21)): `recipes/discovery/` says when to offer discovery at setup, how a handover fills `docs/SPEC.md` and `docs/assumptions.md` with discovery IDs kept, and adds an `AGENTS-section.md` that sends contradicted assumptions and scope changes back through discovery. The bootstrap prompt lists `discovery` among the optional recipes, and the Sprint set-up prompt accepts a handover as "the brief".
+- **Audit context** ([Phunkhouse/ai-audit-toolkit#23](https://github.com/Phunkhouse/ai-audit-toolkit/pull/23)): `templates/project-context.md` has a line for the handover's path and source date, so audits treat its acceptance criteria, constraints and open assumptions as intended behavior without trusting a stale handover.
+
+The mapping table above is the single statement of the contract; the Starter Pack recipe links to it rather than repeating it. Change it here first, then check the recipe still agrees.
+
 ## Integration opportunities for later
 
 None of these are implemented, and none require coordinated releases:
 
-1. **A `discovery` recipe in the Starter Pack** with an `AGENTS-section.md` telling engineering agents that `docs/discovery/*/handover.md` is the origin of the SPEC and that a contradicted assumption goes back to discovery. Belongs in the Starter Pack repository; needs the owner's approval there.
-2. **Starter Pack bootstrap and Sprint prompts** naming the handover as an accepted form of "the brief".
-3. **Audit context:** a line in the Audit Toolkit's `templates/project-context.md` pointing to the handover's acceptance criteria as intended behavior.
-4. **LLM Evaluation Toolkit:** when a discovery's solution includes model behavior, its hypotheses and failure modes become the seed for behavioral evaluation criteria. Define this when that toolkit exists.
-5. **A shared installer.** The three toolkits ship near-identical `install.sh` scripts; a single script that links every toolkit's Skills would remove the copies. Worth doing once a fourth toolkit appears.
+1. **LLM Evaluation Toolkit:** when a discovery's solution includes model behavior, its hypotheses and failure modes become the seed for behavioral evaluation criteria. Define this when that toolkit exists.
+2. **A shared installer.** The three toolkits ship near-identical `install.sh` scripts; a single script that links every toolkit's Skills would remove the copies. Worth doing once a fourth toolkit appears.

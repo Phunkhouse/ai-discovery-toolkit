@@ -28,7 +28,7 @@ The installer links each Skill into `~/.claude/skills` (Claude Code) and `~/.age
 
 - **Update:** `git pull`. The links point at the clone, so installed Skills update with it. Rerun the installer when a pull adds a Skill.
 - **New machine:** clone and run the installer. Everything needed lives in this repository; nothing is machine-specific.
-- **Without installing:** each Skill folder is self-contained. Copy or link `skills/discovery-rapid/` (and `skills/discovery-handover/` if you want it) into a project's `.claude/skills/` or `.agents/skills/` to use it in that project only.
+- **In one project:** `./scripts/install.sh --project /path/to/project` copies the Skills into that project's `.claude/skills/` and `.agents/skills/`, so they travel with the repository to collaborators and client machines that have not installed the toolkit. Each copy carries a `.discovery-toolkit-copy` file naming the toolkit commit; rerun the same command to update, and `--uninstall` to remove only those copies. Commit the copies in that project if others should get them.
 
 ## Use
 
@@ -72,7 +72,7 @@ The full rules are in [`shared/references/rules.md`](shared/references/rules.md)
 
 ## With the other toolkits
 
-The toolkit is independently usable. With the AI Starter Pack, the handover maps one-to-one onto a Sprint `docs/SPEC.md` or the MVP assumptions register; the AI Audit Toolkit can later check an implementation against the same acceptance criteria. See [ecosystem](docs/ecosystem.md) for the boundaries and the handover contract. Nothing here depends on those repositories at runtime.
+The toolkit is independently usable. With the AI Starter Pack, the handover maps one-to-one onto a Sprint `docs/SPEC.md` or the MVP assumptions register, and the pack's `discovery` recipe says when to offer discovery and how to fill the SPEC from a handover. The AI Audit Toolkit's project-context template points audits at the handover's acceptance criteria as intended behavior. See [ecosystem](docs/ecosystem.md) for the boundaries and the handover contract. Nothing here depends on those repositories at runtime.
 
 ## Compatibility and limitations
 
