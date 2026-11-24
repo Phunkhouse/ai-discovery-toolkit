@@ -28,9 +28,10 @@ One self-contained Skill, `discovery-rapid`, with the complete Rapid workflow, b
 
 ## v0.3: Interoperability and installation
 
-- Propose the Starter Pack `discovery` recipe and the audit-context pointer described in [ecosystem](ecosystem.md), in those repositories, with the owner's approval.
+- **Done:** the Starter Pack `discovery` recipe and the audit-context pointer, in those repositories ([ecosystem](ecosystem.md#integrations-in-place)).
 - Verify Codex end to end and record any differences.
-- Consider a shared installer across the toolkits, and a project-local install mode for client machines.
+- **Done:** a project-local install mode (`install.sh --project`), copying the Skills into a project so collaborators and client machines get them with the repository.
+- A shared installer across the toolkits, once a fourth toolkit exists.
 - Optional: a light "discovery status" summary across all briefs in a project.
 
 ## v0.4: Deep Discovery

@@ -10,7 +10,8 @@ This repository is a toolkit, not an application: Skills, references, templates 
 - `./scripts/sync-shared.sh [--check]` — copies the files each Skill lists in its `shared.txt` from `shared/` into the Skill, with a generated-file marker; `--check` fails if any copy differs. Run it after editing anything in `shared/`.
 - `./scripts/test-check-brief.sh` — the brief checker's regression cases alone (run against `shared/scripts/check-brief.sh`).
 - `bash shared/scripts/check-brief.sh [--template] <brief.md>` — the structural check the Skill runs on a brief (and its handover).
-- `./scripts/install.sh [--dry-run] [--claude-only | --codex-only] [--uninstall]` — links the Skills into `~/.claude/skills` and `~/.agents/skills`. Do not run it without `--dry-run` unless the user asks.
+- `./scripts/install.sh [--project DIR] [--dry-run] [--claude-only | --codex-only] [--uninstall]` — links the Skills into `~/.claude/skills` and `~/.agents/skills`, or with `--project` copies them into that project's `.claude/skills` and `.agents/skills` with a `.discovery-toolkit-copy` marker. Do not run it without `--dry-run` unless the user asks.
+- `./scripts/test-install.sh` — the installer's regression cases, in temporary directories only.
 - `evals/run.sh [--model M] [--no-grade] [--keep] [scenario …]` — behavioral scenarios, run headlessly and graded against their rubrics. Costs model usage; run only when the user asks or before releasing a change to the Skill's instructions, and say so.
 
 Bash and standard Unix tools only; no package dependencies. When adding or changing a script, update this section.

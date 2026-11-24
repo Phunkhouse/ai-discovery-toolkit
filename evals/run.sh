@@ -93,6 +93,7 @@ for scenario in "${scenarios[@]}"; do
   printf '[%s] %s in %s\n' "$stamp" "$id" "$project"
 
   # Seed lines put files into the project before the first turn: "Seed: <repo path> -> <project path>".
+  # shellcheck disable=SC2016 # literal pattern, nothing to expand
   while IFS= read -r seed; do
     from="${seed%% -> *}"; to="${seed##* -> }"
     mkdir -p "$(dirname "$project/$to")"

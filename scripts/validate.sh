@@ -33,6 +33,7 @@ for skill_dir in "$repo_dir"/skills/*; do
     [[ -e "$skill_dir/$reference" ]] || fail "Missing bundled file $reference named in $skill"
   done < <(cat "$skill_dir"/SKILL.md "$skill_dir"/references/*.md | grep -v 'Generated from shared/' | grep -oE '(references|templates|scripts)/[A-Za-z0-9._-]+\.(md|sh)' | sort -u)
 
+  # shellcheck disable=SC2016 # literal pattern, nothing to expand
   if grep -rnE '\.\./\.\./|AskUserQuestion|TodoWrite|ExitPlanMode|\$CLAUDE_' "$skill_dir"; then
     fail "Skills must be self-contained and agent-neutral (no ../../ paths or agent-specific tool names): $skill_dir"
   fi
@@ -67,6 +68,7 @@ for brief_template in "$repo_dir"/skills/*/templates/brief.md; do
   bash "$repo_dir/shared/scripts/check-brief.sh" --template "$brief_template" >/dev/null || fail "Template fails the brief checker: $brief_template"
 done
 bash "$script_dir/test-check-brief.sh"
+bash "$script_dir/test-install.sh"
 
 # Evals: every scenario has at least one turn and a rubric.
 for scenario in "$repo_dir"/evals/scenarios/*.md; do
