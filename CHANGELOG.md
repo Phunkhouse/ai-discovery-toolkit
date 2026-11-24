@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased (v0.2)
+
+- **Brief format 2** ([decision 0002](docs/decisions/0002-compact-brief-format.md)): one register table for facts, statements, requirements, constraints, assumptions, conflicts and risks; scope as labelled lines; a `Format: 2` header. IDs, statuses, approval rules and the handover are unchanged.
+- The Skill converts a v0.1 (format 1) brief when it resumes one, keeping every ID; the checker reports format 1 briefs as needing conversion.
+- The checker warns when a brief exceeds 1,500 prose words.
+- Examples and checker fixtures converted; new eval scenario 08 (resume a v0.1 brief) and `Seed:` support in `evals/run.sh`.
+
 ## v0.1.0 — 2026-11-24
 
 First release: Rapid Discovery.

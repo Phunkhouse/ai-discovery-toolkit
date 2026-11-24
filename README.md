@@ -77,7 +77,7 @@ The toolkit is independently usable. With the AI Starter Pack, the handover maps
 - **Claude Code:** verified by running the behavioral scenarios headlessly with `claude -p` (see [evals](evals/README.md)).
 - **Codex:** the Skill uses only the portable `name`/`description` frontmatter, a description under Codex's 500-character limit, no agent-specific tools and no paths outside its folder, and the installer uses the same `~/.agents/skills` location as the other toolkits. It has **not** been run under Codex for this release, because no Codex CLI was available; `evals/run.sh` accepts `EVAL_AGENT_CMD` to do so.
 - **Time budgets are approximate.** The agent checks the shell clock at each pass where it can; it cannot see how long you take to answer.
-- **The structural checker checks form, not judgement.** It catches missing sections, placeholders, undefined IDs, unrecorded approvals and stale handovers; the quality of the reasoning is what the behavioral scenarios and your review are for.
+- **The structural checker checks form, not judgement.** It catches missing sections, placeholders, undefined IDs, unrecorded approvals, stale handovers and briefs over 1,500 words; the quality of the reasoning is what the behavioral scenarios and your review are for.
 - Only the Rapid profile exists. For large, high-risk or multi-stakeholder problems, the Skill says when Rapid is not enough rather than stretching.
 
 More in the [specification](docs/SPEC.md).

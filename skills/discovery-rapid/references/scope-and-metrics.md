@@ -37,4 +37,4 @@ Keep about seven or fewer. Acceptance criteria describe the behavior; they do no
 
 ## Risks and feasibility
 
-List the material ones only: technical dependencies, data and API availability, operational load, security, privacy, regulation, vendor or business risk. For each, mark it as **known** (with source) or **assumed**, and give a mitigation or a small check. A feasibility check is a bounded spike or question with a yes/no outcome and a time limit, for example "Confirm the carrier portal offers an export of exceptions (operations lead, 1 day)". Do not design the solution.
+Record the material ones only, as `RK-` rows in the register: technical dependencies, data and API availability, operational load, security, privacy, regulation, vendor or business risk. For each, mark it as **known** (with source) or **assumed**, and give a mitigation or a small check. A feasibility check is a bounded spike or question with a yes/no outcome and a time limit, for example "Confirm the carrier portal offers an export of exceptions (operations lead, 1 day)". Do not design the solution.

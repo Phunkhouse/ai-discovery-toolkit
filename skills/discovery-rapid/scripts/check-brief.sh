@@ -7,10 +7,10 @@ usage() {
   cat <<'USAGE'
 Usage: check-brief.sh [--template] <brief.md>
 
-Checks a discovery brief: header fields, required sections, unfilled placeholders,
+Checks a format 2 discovery brief: header fields, required sections, unfilled placeholders,
 duplicate or undefined IDs, recorded approvals, the content a brief needs before
 approval, and, when handed over, that handover.md exists, is current and cites only
-IDs the brief defines.
+IDs the brief defines. Warns when the brief is longer than 1,500 words.
 --template checks only the structure (for the template itself).
 Exit status: 0 no errors (warnings may be printed), 1 errors found, 2 usage error.
 USAGE
@@ -82,6 +82,12 @@ file_index == 1 {
     if (status !~ /^(in progress|awaiting answers|awaiting approval|approved|handed over|closed)$/)
       err("Status must be one of: in progress, awaiting answers, awaiting approval, approved, handed over, closed")
   }
+  if (line ~ /^- \*\*Format:\*\* /) { format = line; sub(/^- \*\*Format:\*\* /, "", format); format = trim(format) }
+  if (section == "Scope" && match(line, /^- \*\*(Must have|Optional|Non-goals|Deferred):\*\*/)) {
+    label = substr(line, 5, RLENGTH - 7); scope_lines[label] = 1
+    value = substr(line, RLENGTH + 1); value = trim(value)
+    if (label == "Non-goals" && value != "" && value !~ /^None\.?$/) nongoals++
+  }
   if (line ~ /^- \*\*Updated:\*\* /) {
     updated_seen = 1
     if (line !~ /^- \*\*Updated:\*\* [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/ && !template)
@@ -113,7 +119,6 @@ file_index == 1 {
       qstatus = trim(cell[n - 1]); if (qstatus ~ /^open/) open_questions++
     }
   }
-  if (section == "Scope" && subsection == "Non-goals" && line ~ /^- / && line !~ /^- None\.?[ \t]*$/) nongoals++
   collect_refs(line, 1)
   next
 }
@@ -135,12 +140,17 @@ file_index == 2 {
 
 END {
   FILENAME = ARGV[1]
+  if (("What we know" in sections) || format == "1") {
+    errf("format 1 brief (v0.1); ask discovery-rapid to convert it to format 2, keeping every ID")
+    printf "summary\t%s\t%d\t\n", status, errors; exit
+  }
+  if (format != "2") errf("missing \"- **Format:** 2\" line")
   if (status == "") errf("missing \"- **Status:** …\" line")
   if (!updated_seen) errf("missing \"- **Updated:** YYYY-MM-DD by …\" line")
-  split("Resume here|Problem|What we know|Open questions|Options and recommendation|Scope|Acceptance criteria|Success|Risks and feasibility|Decisions", req, "|")
+  split("Resume here|Problem|Register|Open questions|Options and recommendation|Scope|Acceptance criteria|Success|Decisions", req, "|")
   for (i in req) if (!(req[i] in sections)) errf("missing section \"## " req[i] "\"")
-  split("What we know/Sources|What we know/Facts and statements|What we know/Requirements and constraints|What we know/Assumptions|What we know/Conflicts|Scope/Must have|Scope/Optional|Scope/Non-goals|Scope/Deferred", reqsub, "|")
-  for (i in reqsub) if (!(reqsub[i] in subsections)) { s = reqsub[i]; sub(/.*\//, "", s); errf("missing subsection \"### " s "\"") }
+  split("Must have|Non-goals|Deferred", reqscope, "|")
+  for (i in reqscope) if (!(reqscope[i] in scope_lines)) errf("missing \"- **" reqscope[i] ":** …\" line in Scope")
   if (template) { printf "summary\t%s\t%d\t\n", status, errors; exit }
 
   for (id in refline) if (!(id in defined))
@@ -168,6 +178,11 @@ printf '%s\n' "$output" | grep -v '^summary' || true
 errors="$(cut -f3 <<<"$summary")"
 handover_date="$(cut -f4 <<<"$summary")"
 brief_date="$(grep -m1 -oE '^- \*\*Updated:\*\* [0-9]{4}-[0-9]{2}-[0-9]{2}' "$brief" | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)"
+# Count prose words: table pipes, separator rows and list markers are not words.
+words="$(sed -E 's/\|/ /g; s/(^| )-{3,}( |$)/ /g; s/(^| )- (\[[ xX]\] )?/ /g' "$brief" | wc -w | tr -d ' ')"
+if [[ "$template" -eq 0 && "$words" -gt 1500 ]]; then
+  printf 'warning: %s: %s words; a Rapid brief aims for under about 1,500 (under 800 for a small problem)\n' "$brief" "$words"
+fi
 if [[ -n "$handover_date" && -n "$brief_date" && "$brief_date" > "$handover_date" ]]; then
   printf 'warning: %s: handover source date %s is older than the brief (Updated %s); regenerate the handover\n' "$handover" "$handover_date" "$brief_date"
 fi

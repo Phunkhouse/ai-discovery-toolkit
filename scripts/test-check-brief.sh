@@ -29,6 +29,7 @@ expect "$testdata/bad-missing-handover/brief.md" 1 'handover.md is missing'
 expect "$testdata/bad-awaiting-approval/brief.md" 1 'needs at least one non-goal'
 expect "$testdata/bad-handover-id/brief.md" 1 'C-7 is referenced but not defined'
 expect "$testdata/stale-handover/brief.md" 0 'regenerate the handover'
+expect "$testdata/format-1/brief.md" 1 'format 1 brief (v0.1); ask discovery-rapid to convert it'
 
 template_output="$(bash "$checker" --template "$repo_dir/skills/discovery-rapid/templates/brief.md" 2>&1)" || {
   printf 'FAIL template structure:\n%s\n' "$template_output" >&2; failures=$((failures + 1)); }

@@ -12,7 +12,7 @@ Files in this Skill are relative to this `SKILL.md`. Read `references/rules.md` 
 ## 1. Start or resume
 
 1. Look for briefs in `docs/discovery/*/brief.md` under the working directory, or where the user points.
-   - **Resume** when the request concerns an existing brief whose status is not `handed over` or `closed`. Read the whole brief, starting with its *Resume here* section. Tell the user in two or three lines what is known, what is waiting and the next step. If the brief's `Updated` date is old or the user says things have changed, list the facts the recommendation rests on and ask which still hold before building on them.
+   - **Resume** when the request concerns an existing brief whose status is not `handed over` or `closed`. Read the whole brief, starting with its *Resume here* section. If its header has no `Format: 2` line (a v0.1 brief with a "What we know" section), first convert it to the current template: move every entry into the register and scope lines, keeping every ID (options, questions and criteria included), status and source, and tell the user it was converted. Conversion changes layout only; do not shorten, merge or drop entries while converting. Tell the user in two or three lines what is known, what is waiting and the next step. If the brief's `Updated` date is old or the user says things have changed, list the facts the recommendation rests on and ask which still hold before building on them.
    - **Start** otherwise: choose a short kebab-case slug, copy `templates/brief.md` to `docs/discovery/<slug>/brief.md`, and record the input as `SRC-1`. Do not paste raw input into the brief; summarize it (see the sensitivity rules).
 2. Settle the session in one message, asking only for what is missing and using defaults otherwise:
    - **Time budget:** default 20 minutes. Note the start time with `date` when a shell is available.
@@ -34,7 +34,7 @@ Size the brief to the problem (see "Proportionality" in the rules): a small prob
 
 ### Pass 2: Register what is known
 
-Sort every material claim into the register with an ID and a source, following the evidence kinds in `references/rules.md`. Record disagreements between sources as conflicts (`X-`) with the decision each affects; never resolve a conflict silently by picking a side. Mark any requirement you derived yourself as `inferred`.
+List the sources as `SRC-` items, then sort every material claim into the register table with an ID and a source, following the evidence kinds in `references/rules.md`. Keep rows grouped by kind (`F`, `S`, `R`, `C`, `A`, `X`, `RK`) and use *Notes* only for what the kind needs. Record disagreements between sources as conflicts (`X-`) with the decision each affects; never resolve a conflict silently by picking a side. Mark any requirement you derived yourself as `inferred`.
 
 ### Pass 3: Consequential unknowns and questions
 
@@ -51,7 +51,7 @@ Read `references/options.md`. Compare two to four options, including at least on
 
 ### Pass 5: Scope and success
 
-Read `references/scope-and-metrics.md`. For the recommended direction only: the smallest end-to-end scope, optional items, non-goals, deferred work with reasons, observable acceptance criteria, the desired outcome, one to three metrics with baselines or how to get them, a testable hypothesis, how it could fail or backfire, and the material risks with small feasibility checks where something is unverified. Do not plan the implementation.
+Read `references/scope-and-metrics.md`. For the recommended direction only: the smallest end-to-end scope, optional items, non-goals, deferred work with reasons, observable acceptance criteria, the desired outcome, one to three metrics with baselines or how to get them, a testable hypothesis, how it could fail or backfire, and the material risks as `RK-` rows in the register, with small feasibility checks where something is unverified. Do not plan the implementation.
 
 ## 3. Present decisions
 
@@ -80,5 +80,5 @@ Only when the user asks for a handover or approves the brief for building. Read 
 ## 6. Finish every session
 
 1. Rewrite *Resume here*: what is done, what waits on whom, the next step, and time used against the budget. Set `Status` and `Updated`.
-2. Run `bash scripts/check-brief.sh <path to brief.md>` (path relative to this Skill). Fix every error it reports. If the shell is unavailable, check the brief against the template's required sections by eye and say so.
+2. Run `bash scripts/check-brief.sh <path to brief.md>` (path relative to this Skill). Fix every error it reports, and act on a length warning by cutting rows and sentences that change no decision. If the shell is unavailable, check the brief against the template's required sections by eye and say so.
 3. Report briefly in chat: where the brief is, its status, the decisions needed and the questions to send.

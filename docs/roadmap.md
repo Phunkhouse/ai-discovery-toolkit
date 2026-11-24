@@ -22,7 +22,7 @@ One self-contained Skill, `discovery-rapid`, with the complete Rapid workflow, b
 - A `discovery-standard` Skill: structured stakeholder analysis, user workflows, product requirements beyond a single slice, MVP scope, validation hypotheses, a fuller feasibility and risk assessment, and a structured product specification.
 - A stakeholder question pack for asynchronous discovery: per-recipient messages with context, and a way to record replies that arrive out of order.
 - An upgrade path from a Rapid brief to a Standard one without starting again.
-- A more compact Rapid brief: v0.1 briefs run 1,350–2,600 words against a target of 800–1,500, mostly because of the register's separate tables. Candidates: one combined register table, optional subsections when empty.
+- **Done:** a compact brief format (format 2, [decision 0002](decisions/0002-compact-brief-format.md)): one register table, scope as labelled lines, a length warning in the checker.
 - Lessons from real Rapid usage folded back into the rules and scenarios.
 
 ## v0.3: Interoperability and installation

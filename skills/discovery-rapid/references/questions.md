@@ -32,7 +32,7 @@ Typical high-value unknowns:
 
 ## Record each question
 
-In the brief's open-questions table: the question, the decision it changes, whom to ask, the priority, the working assumption if it stays unanswered (an `A-` entry), and the status.
+In the brief's open-questions table, most important first: the question, the decision it changes, whom to ask, the working assumption if it stays unanswered (an `A-` entry), and the status.
 
 ## Asking
 
